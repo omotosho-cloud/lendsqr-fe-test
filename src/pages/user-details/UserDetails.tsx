@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useParams, Link } from "react-router-dom";
 import DashboardLayout from "../../components/layout/DashboardLayout";
 import {
   fetchUserById,
@@ -12,7 +11,6 @@ import "./UserDetails.scss";
 
 const UserDetails = () => {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -64,20 +62,20 @@ const UserDetails = () => {
     }
   };
 
-  const getStatusClass = (status: string) => {
-    switch (status.toLowerCase()) {
-      case "active":
-        return "status--active";
-      case "inactive":
-        return "status--inactive";
-      case "pending":
-        return "status--pending";
-      case "blacklisted":
-        return "status--blacklisted";
-      default:
-        return "";
-    }
-  };
+  // const getStatusClass = (status: string) => {
+  //   switch (status.toLowerCase()) {
+  //     case "active":
+  //       return "status--active";
+  //     case "inactive":
+  //       return "status--inactive";
+  //     case "pending":
+  //       return "status--pending";
+  //     case "blacklisted":
+  //       return "status--blacklisted";
+  //     default:
+  //       return "";
+  //   }
+  // };
 
   const renderStars = (tier: number) => {
     return Array.from({ length: 3 }, (_, i) => (
@@ -182,7 +180,7 @@ const UserDetails = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Tabs Navigation */}
           <div className="tabs-nav">
             <button
