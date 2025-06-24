@@ -1,0 +1,309 @@
+@use "sass:map";
+@use "../../assets/scss/variables" as *;
+
+.user-details {
+  padding: 2rem;
+
+  &__header {
+    margin-bottom: 2rem;
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: $text-secondary;
+      text-decoration: none;
+      margin-bottom: 1rem;
+      font-size: $fs-base;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+
+      @media (max-width: map.get($breakpoints, "md")) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      h1 {
+        font-size: $fs-2xl;
+        color: $text-primary;
+        margin: 0;
+      }
+
+      .header-actions {
+        display: flex;
+        gap: 1rem;
+
+        .btn {
+          padding: 0.75rem 1.5rem;
+          border-radius: 8px;
+          font-weight: $fw-semibold;
+          font-size: $fs-sm;
+          text-transform: uppercase;
+
+          &--outline {
+            background: transparent;
+            border: 1px solid;
+          }
+
+          &--danger {
+            color: $error-color;
+            border-color: $error-color;
+
+            &:hover {
+              background: rgba($error-color, 0.1);
+            }
+          }
+
+          &--success {
+            color: $success-color;
+            border-color: $success-color;
+
+            &:hover {
+              background: rgba($success-color, 0.1);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .user-profile-card {
+    background: $white;
+    border-radius: 4px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.04);
+    margin-bottom: 2rem;
+
+    .profile-main {
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+
+      @media (max-width: map.get($breakpoints, "lg")) {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+      }
+
+      .profile-left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        @media (max-width: map.get($breakpoints, "lg")) {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .profile-avatar {
+          .avatar-placeholder {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba($primary-color, 0.1);
+            color: $primary-color;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: $fs-3xl;
+            font-weight: $fw-bold;
+          }
+        }
+
+        .profile-info {
+          h2 {
+            font-size: $fs-2xl;
+            color: $text-primary;
+            margin: 0 0 0.5rem;
+          }
+
+          .user-id {
+            color: $text-secondary;
+            font-size: $fs-base;
+            margin: 0;
+          }
+        }
+      }
+
+      .profile-divider {
+        width: 1px;
+        height: 60px;
+        background: rgba($text-secondary, 0.2);
+
+        @media (max-width: map.get($breakpoints, "lg")) {
+          width: 100%;
+          height: 1px;
+        }
+      }
+
+      .profile-tier {
+        text-align: center;
+
+        .stat-label {
+          color: $text-secondary;
+          font-size: $fs-sm;
+          margin-bottom: 0.5rem;
+          text-transform: uppercase;
+        }
+
+        .stars {
+          display: flex;
+          gap: 0.25rem;
+          justify-content: center;
+
+          .star {
+            font-size: $fs-base;
+            opacity: 0.3;
+
+            &.filled {
+              opacity: 1;
+            }
+          }
+        }
+      }
+
+      .profile-balance {
+        text-align: center;
+
+        .balance-amount {
+          color: $text-primary;
+          font-size: $fs-2xl;
+          font-weight: $fw-bold;
+          margin-bottom: 0.5rem;
+        }
+
+        .bank-info {
+          color: $text-secondary;
+          font-size: $fs-sm;
+        }
+      }
+    }
+
+    .tabs-nav {
+      display: flex;
+      padding: 0 2rem;
+      border-top: 1px solid $bg-color;
+      justify-content: space-between;
+
+      .tab-button {
+        padding: 1rem 0;
+        background: none;
+        border: none;
+        color: $text-secondary;
+        font-size: $fs-base;
+        position: relative;
+        white-space: nowrap;
+        cursor: pointer;
+        flex: 1;
+        text-align: center;
+
+        &:hover {
+          color: $primary-color;
+        }
+
+        &.active {
+          color: $primary-color;
+          font-weight: $fw-medium;
+
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: $primary-color;
+          }
+        }
+      }
+    }
+  }
+
+  .user-details-content {
+    background: $white;
+    border-radius: 4px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.04);
+
+    .tab-content {
+      padding: 2rem;
+
+      .details-grid {
+        display: grid;
+        gap: 2rem;
+
+        .details-section {
+          h3 {
+            color: $text-primary;
+            font-size: $fs-lg;
+            margin: 0 0 1.5rem;
+          }
+
+          .details-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem 3rem;
+
+            @media (max-width: map.get($breakpoints, "xl")) {
+              grid-template-columns: repeat(4, 1fr);
+            }
+
+            @media (max-width: map.get($breakpoints, "lg")) {
+              grid-template-columns: repeat(3, 1fr);
+            }
+
+            @media (max-width: map.get($breakpoints, "md")) {
+              grid-template-columns: repeat(2, 1fr);
+            }
+
+            @media (max-width: map.get($breakpoints, "sm")) {
+              grid-template-columns: 1fr;
+            }
+
+            .detail-item {
+              label {
+                display: block;
+                color: $text-secondary;
+                font-size: $fs-sm;
+                text-transform: uppercase;
+                margin-bottom: 0.5rem;
+              }
+
+              span {
+                color: $text-primary;
+                font-size: $fs-base;
+              }
+            }
+          }
+        }
+      }
+
+      .tab-placeholder {
+        text-align: center;
+        color: $text-secondary;
+        padding: 3rem;
+      }
+    }
+  }
+
+  .loading,
+  .error {
+    text-align: center;
+    padding: 3rem;
+    color: $text-secondary;
+  }
+}

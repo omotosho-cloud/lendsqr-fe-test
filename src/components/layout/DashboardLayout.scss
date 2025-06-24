@@ -1,0 +1,419 @@
+@use "sass:map";
+@use "../../assets/scss/variables" as *;
+@use "sass:color";
+
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+
+  &__sidebar {
+    width: 280px;
+    background-color: $white;
+    border-right: 1px solid $bg-color;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+
+    @media (max-width: map.get($breakpoints, "lg")) {
+      transform: translateX(-100%);
+
+      &.open {
+        transform: translateX(0);
+      }
+    }
+
+    .logo {
+      padding: 2rem;
+      border-bottom: 1px solid $bg-color;
+
+      img {
+        height: 30px;
+        width: auto;
+      }
+    }
+
+    .nav-menu {
+      padding: 2rem 0;
+
+      .nav-section {
+        margin-bottom: 2rem;
+
+        .switch-organisation {
+          padding: 0 2rem;
+          margin-bottom: 1rem;
+
+          .switch-org-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 0;
+            background: none;
+            border: none;
+            color: $text-secondary;
+            font-size: $fs-base;
+            cursor: pointer;
+            transition: color 0.3s ease;
+
+            &:hover {
+              color: $primary-color;
+            }
+
+            .icon {
+              width: 16px;
+              height: 16px;
+            }
+
+            .dropdown-icon {
+              width: 12px;
+              height: 12px;
+              margin-left: auto;
+              transition: transform 0.3s ease;
+
+              &.open {
+                transform: rotate(180deg);
+              }
+            }
+          }
+
+          .org-dropdown {
+            margin-top: 0.5rem;
+            background: $white;
+            border: 1px solid $bg-color;
+            border-radius: 4px;
+            overflow: hidden;
+
+            .org-item {
+              padding: 0.75rem 1rem;
+              color: $text-secondary;
+              font-size: $fs-sm;
+              cursor: pointer;
+              transition: all 0.3s ease;
+
+              &:hover {
+                background: rgba($primary-color, 0.06);
+                color: $primary-color;
+              }
+
+              &:not(:last-child) {
+                border-bottom: 1px solid $bg-color;
+              }
+            }
+          }
+        }
+
+        &__title {
+          padding: 0.5rem 2rem;
+          color: $text-secondary;
+          font-size: $fs-xs;
+          text-transform: uppercase;
+          font-weight: $fw-medium;
+          margin-bottom: 0.5rem;
+        }
+
+        .nav-item {
+          display: flex;
+          align-items: center;
+          padding: 1rem 2rem;
+          color: $text-secondary;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          font-size: $fs-sm;
+
+          &:hover {
+            background-color: rgba($primary-color, 0.06);
+            color: $primary-color;
+
+            .icon {
+              opacity: 0.8;
+            }
+          }
+
+          &.active {
+            background-color: rgba($primary-color, 0.06);
+            color: $primary-color;
+            border-left: 3px solid $primary-color;
+
+            .icon {
+              opacity: 1;
+            }
+          }
+
+          .icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 0.8rem;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+          }
+
+          .label {
+            font-weight: $fw-regular;
+          }
+        }
+      }
+    }
+  }
+
+  &__main {
+    flex: 1;
+    margin-left: 280px;
+    min-height: 100vh;
+    background-color: $bg-color;
+
+    @media (max-width: map.get($breakpoints, "lg")) {
+      margin-left: 0;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 280px;
+      height: 80px;
+      background-color: $white;
+      border-bottom: 1px solid $bg-color;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 900;
+
+      @media (max-width: map.get($breakpoints, "lg")) {
+        left: 0;
+        padding: 0 1rem;
+      }
+
+      .search-bar {
+        flex: 1;
+        max-width: 400px;
+        margin: 0 2rem 0 0;
+
+        @media (max-width: map.get($breakpoints, "md")) {
+          margin: 0 1rem 0 0;
+          max-width: 200px;
+        }
+
+        @media (max-width: map.get($breakpoints, "sm")) {
+          display: none;
+        }
+
+        form {
+          display: flex;
+          align-items: stretch;
+          height: 40px;
+
+          input {
+            flex: 1;
+            padding: 0 1rem;
+            border: 1px solid rgba($text-secondary, 0.2);
+            border-right: none;
+            border-radius: 8px 0 0 8px;
+            font-size: $fs-sm;
+            background: $white;
+
+            &::placeholder {
+              color: rgba($text-secondary, 0.6);
+            }
+
+            &:focus {
+              outline: none;
+              border-color: $primary-color;
+            }
+          }
+
+          button {
+            width: 56px;
+            background-color: $primary-color;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            color: $white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @media (max-width: map.get($breakpoints, "md")) {
+              width: 48px;
+            }
+
+            img {
+              width: 14px;
+              height: 14px;
+              filter: brightness(0) invert(1);
+            }
+          }
+        }
+      }
+
+      .user-menu {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        @media (max-width: map.get($breakpoints, "md")) {
+          gap: 1rem;
+        }
+
+        .docs-link {
+          color: $primary-color;
+          text-decoration: none;
+          font-weight: $fw-medium;
+          font-size: $fs-sm;
+
+          &:hover {
+            text-decoration: underline;
+          }
+
+          @media (max-width: map.get($breakpoints, "sm")) {
+            display: none;
+          }
+        }
+
+        .notifications {
+          position: relative;
+          cursor: pointer;
+
+          .icon {
+            width: 24px;
+            height: 24px;
+          }
+
+          .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: $error-color;
+            color: $white;
+            font-size: 10px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+
+        .user-profile {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          cursor: pointer;
+
+          @media (max-width: map.get($breakpoints, "sm")) {
+            gap: 0.5rem;
+          }
+
+          .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba($primary-color, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: $fw-medium;
+            color: $primary-color;
+
+            @media (max-width: map.get($breakpoints, "sm")) {
+              width: 32px;
+              height: 32px;
+              font-size: $fs-sm;
+            }
+          }
+
+          .name {
+            font-weight: $fw-medium;
+            color: $text-primary;
+            font-size: $fs-sm;
+
+            @media (max-width: map.get($breakpoints, "sm")) {
+              display: none;
+            }
+          }
+
+          .dropdown-arrow {
+            width: 16px;
+            height: 16px;
+
+            @media (max-width: map.get($breakpoints, "sm")) {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    .content {
+      padding: 100px 2rem 2rem;
+
+      @media (max-width: map.get($breakpoints, "lg")) {
+        padding: 140px 1rem 2rem; // Account for mobile header
+      }
+
+      @media (max-width: map.get($breakpoints, "md")) {
+        padding: 140px 1rem 2rem;
+      }
+
+      @media (max-width: map.get($breakpoints, "sm")) {
+        padding: 140px 0.5rem 2rem;
+      }
+    }
+  }
+
+  // Mobile header
+  .mobile-header {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: $white;
+    border-bottom: 1px solid $bg-color;
+    z-index: 1100;
+    align-items: center;
+    padding: 0 1rem;
+    gap: 1rem;
+
+    @media (max-width: map.get($breakpoints, "lg")) {
+      display: flex;
+    }
+
+    .mobile-menu-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: $text-primary;
+      padding: 0.5rem;
+    }
+
+    .mobile-logo {
+      img {
+        height: 30px;
+        width: auto;
+      }
+    }
+  }
+
+  // Overlay for mobile sidebar
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+
+    @media (min-width: map.get($breakpoints, "lg")) {
+      display: none;
+    }
+  }
+}

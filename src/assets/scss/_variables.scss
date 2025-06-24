@@ -1,0 +1,58 @@
+@use "sass:map";
+
+// Colors
+$primary-color: #39cdcc;
+$secondary-color: #213f7d;
+$error-color: #e4033b;
+$success-color: #39cd62;
+$warning-color: #e9b200;
+$info-color: #2d9cdb;
+
+// Background Colors
+$bg-color: #fbfbfb;
+$white: #ffffff;
+
+// Text Colors
+$text-primary: #213f7d;
+$text-secondary: #545f7d;
+
+// Font Sizes
+$fs-xs: 0.75rem; // 12px
+$fs-sm: 0.875rem; // 14px
+$fs-base: 1rem; // 16px
+$fs-lg: 1.125rem; // 18px
+$fs-xl: 1.25rem; // 20px
+$fs-2xl: 1.5rem; // 24px
+$fs-3xl: 2rem; // 32px
+
+// Font Weights
+$fw-light: 300;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+
+// Breakpoints
+$breakpoints: (
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+  "xxl": 1400px,
+);
+
+// Mixins
+@mixin respond-to($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (min-width: map.get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+@mixin flex($direction: row, $justify: flex-start, $align: stretch) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}

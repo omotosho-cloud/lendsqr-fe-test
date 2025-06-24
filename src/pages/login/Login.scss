@@ -1,0 +1,189 @@
+@use "../../assets/scss/variables" as *;
+@use "sass:color";
+@use "sass:map";
+
+.login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: $white;
+
+  &__container {
+    width: 100%;
+    display: flex;
+    min-height: 100vh;
+
+    @media (max-width: map.get($breakpoints, "lg")) {
+      flex-direction: column;
+    }
+  }
+
+  &__left {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    background-color: $bg-color;
+
+    @media (max-width: map.get($breakpoints, "lg")) {
+      align-items: center;
+      padding: 1rem;
+    }
+  }
+
+  &__logo {
+    margin-bottom: 4rem;
+
+    img {
+      height: 36px;
+      width: auto;
+    }
+
+    @media (max-width: map.get($breakpoints, "lg")) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__illustration {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      max-width: 600px;
+      width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: map.get($breakpoints, "lg")) {
+      display: none;
+    }
+  }
+
+  &__right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: $white;
+
+    @media (max-width: map.get($breakpoints, "lg")) {
+      padding: 1rem;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+  }
+
+  &__mobile-illustration {
+    display: none;
+
+    @media (max-width: map.get($breakpoints, "lg")) {
+      display: block;
+      width: 100%;
+      max-width: 250px;
+      margin: 2rem 0;
+      order: 2;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  &__content {
+    max-width: 450px;
+    width: 100%;
+  }
+
+  h1 {
+    color: $secondary-color;
+    font-size: $fs-3xl;
+    font-weight: $fw-bold;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    color: $text-secondary;
+    font-size: $fs-lg;
+    margin-bottom: 3rem;
+  }
+
+  &__form {
+    .form-group {
+      margin-bottom: 1.5rem;
+
+      input {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid rgba($text-secondary, 0.15);
+        border-radius: 5px;
+        font-size: $fs-base;
+        transition: all 0.3s ease;
+
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+        }
+
+        &::placeholder {
+          color: $text-secondary;
+        }
+      }
+    }
+
+    .password-input {
+      position: relative;
+
+      .show-password {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: $primary-color;
+        font-weight: $fw-semibold;
+        cursor: pointer;
+        padding: 0;
+        font-size: $fs-sm;
+        text-transform: uppercase;
+      }
+    }
+
+    .forgot-password {
+      display: inline-block;
+      color: $primary-color;
+      text-decoration: none;
+      font-weight: $fw-semibold;
+      font-size: $fs-sm;
+      margin: 1rem 0 2rem;
+      text-transform: uppercase;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__submit {
+    width: 100%;
+    text-transform: uppercase;
+    font-size: $fs-sm;
+    padding: 1rem;
+    background-color: $primary-color;
+    color: $white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: $fw-semibold;
+
+    &:hover {
+      background-color: color.adjust($primary-color, $lightness: -10%);
+    }
+  }
+}
