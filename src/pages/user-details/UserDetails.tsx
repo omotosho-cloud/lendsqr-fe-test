@@ -62,21 +62,6 @@ const UserDetails = () => {
     }
   };
 
-  // const getStatusClass = (status: string) => {
-  //   switch (status.toLowerCase()) {
-  //     case "active":
-  //       return "status--active";
-  //     case "inactive":
-  //       return "status--inactive";
-  //     case "pending":
-  //       return "status--pending";
-  //     case "blacklisted":
-  //       return "status--blacklisted";
-  //     default:
-  //       return "";
-  //   }
-  // };
-
   const renderStars = (tier: number) => {
     return Array.from({ length: 3 }, (_, i) => (
       <span key={i} className={i < tier ? "star filled" : "star"}>
